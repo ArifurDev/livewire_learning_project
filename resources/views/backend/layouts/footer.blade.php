@@ -15,10 +15,11 @@
     <!-- app JavaScript -->
     <script src="{{ asset('backend/assets') }}/js/app.js"></script>
 
-
     <!-- Include Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    <!--drag and drop-->
+    <script src="{{ asset('backend/assets/js/drag-and-drop.js') }}"></script>
     <script>
         $(document).ready(function(){
             toastr.options = {
@@ -49,5 +50,8 @@
             });
         });
     </script>
+
+
+
 
     @livewireScripts

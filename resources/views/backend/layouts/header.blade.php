@@ -9,5 +9,7 @@
         <!-- Include Toastr CSS -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
+        <!--drag and drop-->
+        <link rel="stylesheet" href="{{ asset('backend/assets/css/drag-and-drop.css') }}">
 
         @livewireStyles

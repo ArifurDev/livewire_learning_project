@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\AdminLogin;
+use App\Livewire\Category;
+use App\Livewire\CategoryList;
 use App\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
 
@@ -31,12 +33,14 @@ Route::middleware('auth')->group(function () {
 });
 
 
+/* admin login */
+Route::get('/dashboard/login',AdminLogin::class)->middleware('guest')->name('dashbord.login');
 
-Route::middleware('guest')->group(function () {
-    /* admin login */
-    Route::get('/dashboard/login',AdminLogin::class)->name('dashbord.login');
-    Route::get('/dashboard',Dashboard::class)->name('dashbord.show');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', Dashboard::class)->name('dashbord');
+
+    Route::get('/category', Category::class)->name('category.create');
+    Route::get('/category/list', CategoryList::class)->name('category.list');
+
 });
-
-
 require __DIR__.'/auth.php';
