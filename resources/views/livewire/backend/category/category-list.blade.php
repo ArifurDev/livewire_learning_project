@@ -5,7 +5,7 @@
                     <div>
                         <h4 class="mb-3">Category List</h4>
                     </div>
-                    <a wire:navigate href="{{ route('category.create') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add Category</a>
+                    <a  href="{{ route('category.create') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add Category</a>
                 </div>
             </div>
             <div class="col-lg-12">
@@ -25,7 +25,7 @@
                                 </thead>
                                 <tbody class="ligth-body">
                                     @foreach ($categories as $categorie)
-                                        <tr>
+                                        <tr wire:key={{ $categorie->id }}>
                                             <td>{{ $loop->iteration  }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
