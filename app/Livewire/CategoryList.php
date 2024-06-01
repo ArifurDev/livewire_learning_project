@@ -15,6 +15,14 @@ class CategoryList extends Component
 {
     use WithPagination;
 
+    public $categories;
+    public function mount()
+    {
+        $this->categories =Category::latest()->paginate(10);
+    }
+
+    // protected $paginationTheme = 'bootstrap'; // Optional: for pagination styling
+
     public function toggleStatus($categoryId)
     {
         $category = Category::find($categoryId);
@@ -26,8 +34,10 @@ class CategoryList extends Component
     }
     public function render()
     {
-        return view('livewire.backend.category.category-list',[
-            'categories' => Category::latest()->paginate(10)
-        ]);
+
+        // return view('livewire.backend.category.category-list',[
+        //     'categories' => Category::latest()->paginate(10)
+        // ]);
+         return view('livewire.backend.category.category-list');
     }
 }
