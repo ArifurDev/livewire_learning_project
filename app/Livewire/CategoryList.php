@@ -15,29 +15,21 @@ class CategoryList extends Component
 {
     use WithPagination;
 
-    public $categories;
-    public function mount()
-    {
-        $this->categories =Category::latest()->paginate(10);
-    }
+    // public function toggleStatus($categoryId)
+    // {
+    //     $category = Category::find($categoryId);
+    //     $category->status = !$category->status;
+    //     $category->save();
 
-    // protected $paginationTheme = 'bootstrap'; // Optional: for pagination styling
+    //     // Trigger a success notification
+    //     return $this->dispatch('toast', message: 'Category status updated successfully.!', notify:'success' );
+    // }
 
-    public function toggleStatus($categoryId)
-    {
-        $category = Category::find($categoryId);
-        $category->status = !$category->status;
-        $category->save();
-
-        // Trigger a success notification
-        return $this->dispatch('toast', message: 'Category status updated successfully.!', notify:'success' );
-    }
     public function render()
     {
 
-        // return view('livewire.backend.category.category-list',[
-        //     'categories' => Category::latest()->paginate(10)
-        // ]);
-         return view('livewire.backend.category.category-list');
+        return view('livewire.backend.category.category-list',[
+            'categories' => Category::latest()->paginate(10)
+        ]);
     }
 }

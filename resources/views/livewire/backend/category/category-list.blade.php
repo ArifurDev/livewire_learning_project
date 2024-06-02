@@ -46,10 +46,11 @@
                                         </td>
                                         <td>{{ $category->name }}</td>
                                         <td>
-                                            <div class="custom-control custom-switch custom-switch-color">
+                                            @livewire('toggle-switch', ['model' => $category, 'field' => 'status', 'categoryID' => $category->id ])
+                                            {{-- <div class="custom-control custom-switch custom-switch-color">
                                                 <input type="checkbox" class="custom-control-input bg-success" id="customSwitch{{ $category->id }}" wire:click="toggleStatus({{ $category->id }})" @if ($category->status == 1) checked @endif>
                                                 <label class="custom-control-label" for="customSwitch{{ $category->id }}"></label>
-                                            </div>
+                                            </div> --}}
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center list-action">
