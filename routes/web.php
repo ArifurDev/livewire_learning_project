@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Livewire\AdminLogin;
 use App\Livewire\Category;
+use App\Livewire\CategoryEdit;
 use App\Livewire\CategoryList;
 use App\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/category', Category::class)->name('category.create');
     Route::get('/category/list', CategoryList::class)->name('category.list');
+    Route::get('/category/edit/{id}', CategoryEdit::class)->name('category.edit');
 
 });
 require __DIR__.'/auth.php';
