@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\AdminLogin;
+use App\Livewire\Attribute;
 use App\Livewire\Category;
 use App\Livewire\CategoryEdit;
 use App\Livewire\CategoryList;
 use App\Livewire\Dashboard;
+use App\Livewire\Variants;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,11 +40,19 @@ Route::middleware('auth')->group(function () {
 Route::get('/dashboard/login',AdminLogin::class)->middleware('guest')->name('dashbord.login');
 
 Route::middleware('auth')->group(function () {
+    //Dashboard
     Route::get('/dashboard', Dashboard::class)->name('dashbord');
 
+    //category
     Route::get('/category', Category::class)->name('category.create');
     Route::get('/category/list', CategoryList::class)->name('category.list');
     Route::get('/category/edit/{id}', CategoryEdit::class)->name('category.edit');
+
+    //variants
+     //Route::get('/variants', Variants::class)->name('variants');
+
+    //Attribute
+     Route::get('/attribute', Attribute::class)->name('attribute');
 
 });
 require __DIR__.'/auth.php';
