@@ -82,7 +82,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class=" ">
+                        <li class="{{ Request::routeIs('category') ? 'active' : '' }}">
                             <a href="#category" class="collapsed" data-toggle="collapse" aria-expanded="false">
                                 <svg class="svg-icon" id="p-dash3" width="20" height="20"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -102,7 +102,7 @@
                                 </svg>
                             </a>
                             <ul id="category" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                                <li class="{{ Request::routeIs('category.list') ? 'active' : '' }}">
+                                <li class="{{ Request::routeIs(['category.list','category.edit']) ? 'active' : '' }}">
                                     <a href="{{ route('category.list') }}">
                                         <i class="las la-minus"></i><span>List Category</span>
                                     </a>

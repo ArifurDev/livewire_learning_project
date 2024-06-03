@@ -27,7 +27,11 @@
                                     <div class="drag-area" id="drag-area-category">
                                         <p id="drag-text-category">Drag & Drop your image here or click to upload</p>
                                         <input type="file" id="file-input-category" hidden wire:model="image">
-                                        <div class="thumb-container" id="thumb-container-category"></div>
+                                        <div class="thumb-container" id="thumb-container-category">
+                                            @if ($category->image)
+                                             <img src="{{ Storage::url('public/images/' . $category->image) }}" class="img-fluid rounded mr-3" alt="image">
+                                            @endif
+                                        </div>
                                     </div>
 
                                     @error('image')
@@ -44,7 +48,11 @@
                                     <div class="drag-area" id="drag-area-banner">
                                         <p id="drag-text-banner">Drag & Drop your image here or click to upload</p>
                                         <input type="file" id="file-input-banner" hidden wire:model="banner">
-                                        <div class="thumb-container" id="thumb-container-banner"></div>
+                                        <div class="thumb-container" id="thumb-container-banner">
+                                            @if ($category->banner)
+                                            <img src="{{ Storage::url('public/banner/' . $category->banner) }}" class="mr-3" width="50%" height="auto" alt="image">
+                                           @endif
+                                        </div>
                                     </div>
 
                                     @error('banner')
