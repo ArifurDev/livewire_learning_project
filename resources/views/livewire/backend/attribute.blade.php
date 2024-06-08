@@ -58,12 +58,26 @@
                                     @foreach ($attributes as $attri)
                                         <tr wire:key="{{ $attri->id }}">
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $attri->name }}</td>
                                             <td>
-                                                <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="Delete"
-                                                 wire:click="delete({{ $attri->id }})"
-                                                 wire:confirm='Are you sure to delete this Attribute?'
-                                                 ><i class="ri-delete-bin-line mr-0"></i></a>
+                                                @if ($editId === $attri->id)
+                                                  <input type="text" class="form-control form-control-sm"  wire:model="editName">
+                                                @else
+                                                  {{ $attri->name }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center list-action">
+                                                    @if ($editId === $attri->id)
+                                                        <a class="badge bg-primary mr-2" data-toggle="tooltip" data-placement="top" title="Save" wire:click="update"><i class="ri-check-line mr-0"></i></a>
+                                                    @else
+                                                        <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" wire:click="edit({{ $attri->id }})"><i class="ri-pencil-line mr-0"></i></a>
+                                                    @endif
+
+                                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="Delete"
+                                                    wire:click="delete({{ $attri->id }})"
+                                                    wire:confirm='Are you sure to delete this Attribute?'
+                                                    ><i class="ri-delete-bin-line mr-0"></i></a>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach

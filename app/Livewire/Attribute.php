@@ -14,6 +14,8 @@ class Attribute extends Component
 {
     public $name;
     public $search ='';
+    public $editId = null;
+    public $editName = '';
 
     protected $rules = [
         'name' => 'required|unique:attributes',
@@ -33,15 +35,38 @@ class Attribute extends Component
 
     }
 
-    public function delete($attributeId)
+    public function edit($editId)
     {
-         try {
-            ModelsAttribute::findOrFail($attributeId)->delete();
-            return $this->dispatch('toast', message: 'Attribute delete successfully!', notify:'success' );
-         } catch (\Throwable $e) {
+        try {
+            $this->editId = $editId;
+            $this->editName = ModelsAttribute::findOrFail($editId)->name;
+        } catch (\Throwable $e) {
             //throw $e;
             return $this->dispatch('toast', message: 'Attribute not found!', notify:'error');
          }
+    }
+
+
+    public function update()
+    {
+        $attribute = ModelsAttribute::findOrFail($this->editId);
+        $attribute->name = $this->editName;
+        $attribute->save();
+
+        // Reset edit properties
+        $this->reset(['editId','editName']);
+        return $this->dispatch('toast', message: 'Attribute Update successfully!', notify:'success' );
+    }
+
+    public function delete($attributeId)
+    {
+        try {
+            ModelsAttribute::findOrFail($attributeId)->delete();
+            return $this->dispatch('toast', message: 'Attribute delete successfully!', notify:'success' );
+        } catch (\Throwable $e) {
+            //throw $e;
+            return $this->dispatch('toast', message: 'Attribute not found!', notify:'error');
+        }
     }
 
     public function render()
