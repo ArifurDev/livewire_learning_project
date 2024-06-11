@@ -24,15 +24,11 @@ class Attribute extends Component
     public function submitForm()
     {
         $this->validate();
-
         ModelsAttribute::create($this->validate());
-
         //reset input fild
         $this->reset('name');
-
         // Trigger a success notification
         return $this->dispatch('toast', message: 'Attribute created successfully!', notify:'success' );
-
     }
 
     public function edit($editId)

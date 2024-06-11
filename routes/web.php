@@ -48,11 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/category/list', CategoryList::class)->name('category.list');
     Route::get('/category/edit/{id}', CategoryEdit::class)->name('category.edit');
 
-    //variants
-     //Route::get('/variants', Variants::class)->name('variants');
-
     //Attribute
-     Route::get('/attribute', Attribute::class)->name('attribute');
+    Route::get('/attribute', Attribute::class)->name('attribute');
 
 });
 require __DIR__.'/auth.php';
