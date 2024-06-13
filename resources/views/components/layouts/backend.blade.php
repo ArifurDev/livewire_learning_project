@@ -76,7 +76,7 @@
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="../backend/page-add-product.html">
+                                    <a href="{{ route('product.create') }}">
                                         <i class="las la-minus"></i><span>Add Product</span>
                                     </a>
                                 </li>

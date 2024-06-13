@@ -12,4 +12,7 @@
         <!--drag and drop-->
         <link rel="stylesheet" href="{{ asset('backend/assets/css/drag-and-drop.css') }}">
 
+        <!-- include summernote css -->
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
         @livewireStyles

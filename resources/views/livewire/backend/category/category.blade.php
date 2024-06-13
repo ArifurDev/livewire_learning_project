@@ -29,7 +29,7 @@
                                         <input type="file" id="file-input-category" hidden wire:model="image">
                                         <div class="thumb-container" id="thumb-container-category"></div>
                                     </div>
-
+                                    
                                     @error('image')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
