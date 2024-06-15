@@ -72,13 +72,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Default</label>
-                                    <select class="form-control mb-3" multiple>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                        <option value="4">Four</option>
-                                        <option value="5">Five</option>
+                                    <label>Select Attributes</label>
+                                    <select class="form-control mb-3 js-example-basic-multiple" wair:model="selectedAttributes" multiple="multiple">
+                                        @foreach ($attributes as $attribute)
+                                          <option value="{{ $attribute->name }}">{{ $attribute->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -97,16 +95,122 @@
                             <div class="col-md-12">
                                 <div class="form-group ">
                                     <label>Product price *</label>
-                                    <input type="text" class="form-control" placeholder="Enter Product Name" wire:model="name">
-
-                                    {{-- @error('name')
+                                    <input type="text" class="form-control" placeholder="Enter Product price" wire:model="price">
+                                    @error('price')
                                         <span class="text-danger">{{ $message }}</span>
-                                    @enderror --}}
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label>Unit*</label>
+                                    <select class="form-control mb-3 js-example-basic-single" name="unit">
+                                        <option value="Kg">Kg</option>
+                                        <option value="Gm">Gm</option>
+                                        <option value="Ltr">Ltr</option>
+                                        <option value="Pc">Pc</option>
+                                      </select>
+                                      @error('unit')
+                                        <span class="text-danger">{{ $message }}</span>
+                                      @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label>Discount price *</label>
+                                    <input type="text" class="form-control" placeholder="Enter Discount" wire:model="discount">
+                                    @error('discount')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label>Discount Type *</label>
+                                    <select class="form-control mb-3 js-example-basic-single" name="discountType">
+                                        <option value="Percent">Percent</option>
+                                        <option value="Amount">Amount</option>
+                                      </select>
+                                    @error('discountType')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label>Stock *</label>
+                                    <input type="number" min="0" class="form-control" placeholder="Enter Stock Product" wire:model="stock">
+                                    @error('stock')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label>Category*</label>
+                                    <select class="form-control mb-3 js-example-basic-single" name="category">
+                                        @foreach ($categories as $category)
+                                           <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                      </select>
+                                    @error('category')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label>Status *</label>
+                                    <select class="form-control mb-3" name="status">
+                                        <option value="Published">Published</option>
+                                        <option value="Inactive">Inactive</option>
+                                        <option value="Schedule">Schedule</option>
+                                      </select>
+                                      @error('status')
+                                        <span class="text-danger">{{ $message }}</span>
+                                      @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label>Discount price *</label>
+                                    <input type="text" class="form-control" placeholder="Enter Discount" wire:model="discount">
+                                    @error('discount')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
                 </div>
             </div>
+
         </div>
     </div>
     <!-- Page end  -->

@@ -672,32 +672,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!--all js file-->
     @include('backend.layouts.footer')
 </body>
