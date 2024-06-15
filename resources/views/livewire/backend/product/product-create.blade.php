@@ -9,24 +9,32 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                    <label>Product Name *</label>
+                                    <label>Product Name*</label>
                                     <input type="text" class="form-control" placeholder="Enter Product Name" wire:model="name">
-
-                                    {{-- @error('name')
+                                    @error('name')
                                         <span class="text-danger">{{ $message }}</span>
-                                    @enderror --}}
+                                    @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group ">
-                                    <label>Bar Code *</label>
-                                    <input type="text" class="form-control" placeholder="Enter Bar code" wire:model="bar_code">
-
-                                    {{-- @error('name')
+                                    <label>SKU*</label>
+                                    <input type="text" class="form-control" placeholder="FXSK123U" wire:model="barCode">
+                                    @error('barCode')
                                         <span class="text-danger">{{ $message }}</span>
-                                    @enderror --}}
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label>Bar Code*</label>
+                                    <input type="text" class="form-control" placeholder="Enter Bar code" wire:model="barCode">
+                                    @error('barCode')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -135,7 +143,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                    <label>Discount Type *</label>
+                                    <label>Discount Type*</label>
                                     <select class="form-control mb-3 js-example-basic-single" name="discountType">
                                         <option value="Percent">Percent</option>
                                         <option value="Amount">Amount</option>
@@ -151,7 +159,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                    <label>Stock *</label>
+                                    <label>Stock*</label>
                                     <input type="number" min="0" class="form-control" placeholder="Enter Stock Product" wire:model="stock">
                                     @error('stock')
                                         <span class="text-danger">{{ $message }}</span>
@@ -169,7 +177,8 @@
                             <div class="col-md-12">
                                 <div class="form-group ">
                                     <label>Category*</label>
-                                    <select class="form-control mb-3 js-example-basic-single" name="category">
+                                    <select class="form-control mb-3 js-example-basic-single" name="category" multiple>
+                                        <option value="">Select category</option>
                                         @foreach ($categories as $category)
                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
@@ -184,7 +193,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                    <label>Status *</label>
+                                    <label>Status*</label>
                                     <select class="form-control mb-3" name="status">
                                         <option value="Published">Published</option>
                                         <option value="Inactive">Inactive</option>
@@ -200,11 +209,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group ">
-                                    <label>Discount price *</label>
-                                    <input type="text" class="form-control" placeholder="Enter Discount" wire:model="discount">
-                                    @error('discount')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    <livewire:tags-input />
                                 </div>
                             </div>
                         </div>

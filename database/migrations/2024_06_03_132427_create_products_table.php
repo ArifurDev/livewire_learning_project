@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->string('sku')->nullable();
             $table->string('barCode')->nullable();
-            $table->text('description');
-            $table->text('warranty')->nullable();
+            $table->longText('description');
+            $table->longText('warranty')->nullable();
 
             $table->integer('price');
             $table->string('unit');
