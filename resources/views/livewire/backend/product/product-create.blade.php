@@ -56,7 +56,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Product Image *</label>
-                                    <div class="drag-area" id="drag-area-category">
+                                    {{-- <div class="drag-area" id="drag-area-category">
                                         <p id="drag-text-category">Drag & Drop your image here or click to upload</p>
                                         <input type="file" id="file-input-category" hidden wire:model="image" multiple>
                                         <div class="thumb-container" id="thumb-container-category"></div>
@@ -67,7 +67,21 @@
                                     @enderror
 
                                     <p class="fs-6 text-dark">Images Ratio 1:1</p>
-                                    <small class="text-muted">Image format : jpg png jpeg | Maximum Size : 2 MB</small>
+                                    <small class="text-muted">Image format : jpg png jpeg | Maximum Size : 2 MB</small> --}}
+                                    <div id="fileUpload" class="file-container">
+                                        <label for="fileUpload-1" class="file-upload">
+                                          <div>
+                                            <i class="material-icons-outlined">cloud_upload</i>
+                                            <p>Drag &amp; Drop Files Here</p>
+                                            <span>OR</span>
+                                            <div>Browse Files</div>
+                                          </div>
+                                          <input type="file" id="fileUpload-1" name="images[]" multiple="" hidden="">
+                                        </label>
+                                        @error('images')
+                                         <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                      </div>
                                 </div>
                             </div>
                         </div>

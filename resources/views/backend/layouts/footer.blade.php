@@ -81,5 +81,11 @@
 
     </script>
 
-
+    <!--file upload-->
+    <script src=" {{ asset('backend/assets/fileUpload/fileUpload.js') }}"></script>
+    <script>
+        $(function(){
+           $("#fileUpload").fileUpload();
+        });
+    </script>
     @livewireScripts
