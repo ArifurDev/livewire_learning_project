@@ -1,0 +1,33 @@
+/* .drag-area {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+.drag-area.dragging {
+    background-color: #f1f1f1;
+    border-color: #333;
+}
+.thumb {
+    max-width: 100px;
+    margin: 10px;
+} */
+
+
+/* Inside the <style> section in your HTML file */
+.drag-area {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+.drag-area.dragging {
+    background-color: #f1f1f1;
+    border-color: #333;
+}
+.thumb {
+    max-width: 100px;
+    margin: 10px;
+}
