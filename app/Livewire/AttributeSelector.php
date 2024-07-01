@@ -23,16 +23,39 @@ class AttributeSelector extends Component
 
     public $subProductVariates = [];
 
+    public function mount()
+    {
+        if ($this->variante) {
+            dump($this->variante);
+        }
+    }
+
+
+    public function clearCombinations()
+    {
+        $this->explodedVariantes = [];
+        $this->combinations = [];
+        $this->subVariante = [];
+        $this->subVarianteStock = [];
+        $this->subProductVariates = [];
+    }
+
     public function add()
     {
         // Loop through selected options and explode respective variant and stock values
         foreach ($this->selectedOptions as $index => $value) {
-            $this->explodedVariantes[$value] = explode(',', $this->variante[$value]);
-            // Store variantes
-             $this->variantes[] = [
-                'attribute' => $value,
-                'variant' => $this->variante[$value] ?? '0',
-                ];
+                if (isset($this->variante[$value]) && !empty($this->variante[$value])) {
+                    $this->explodedVariantes[$value] = explode(',', $this->variante[$value]);
+                    // Store variantes
+                    $this->variantes[] = [
+                        'attribute' => $value,
+                        'variant' => $this->variante[$value] ?? '0',
+                        ];
+                }else{
+                   // If any option is empty, clear all combinations
+                    $this->clearCombinations();
+                    return; // Exit early since combinations are cleared
+                }
             }
 
         // Generate all combinations of the exploded variants
@@ -77,13 +100,10 @@ class AttributeSelector extends Component
                     'sub_variante_stock' => $subVarianteStock,
                 ];   
             }    
-
-            dump($this->subProductVariates);
     }
 
     public function render()
     {
-        // $this->showAttributeTable();
         return view('livewire.backend.product.attribute-selector',[
             'attributes' => Attribute::latest()->get(),
         ]);

@@ -17,17 +17,14 @@
             </div>
             <div class="col-md-8">
                 <div class="form-group ">
-                    <input type="text" class="form-control" placeholder="Enter product Variante" wire:model.lazy="variante.{{ $value }}" wire:keydown.enter.prevent="add">
+                    <input type="text" class="form-control product-variante-inpute" placeholder="Enter product Variante" wire:model.lazy="variante.{{ $value }}" wire:keydown.enter.prevent="add">
                 </div>
             </div>
         </div>
     @endforeach
-
-
     <div>
-        @if (!empty($combinations))
             @foreach($combinations as $combination)
-                <div class="row mb-2 p-1">
+                <div class="row mb-2 p-1" wire:key="{{ implode('-', $combination) }}">
                     <div class="col-md-3">
                         <div class="form-group">
                             <span class="form-control">
@@ -50,7 +47,6 @@
                     </div>
                 </div>
             @endforeach
-        @endif
     </div>
 
 
@@ -62,15 +58,13 @@
 @script
 
 <script>
-
-     $(document).ready(function() {
-        $('#options').on('change', function(e){
-            // let selectedValues =  e.target.value;
-            let selectedValues =  $(this).val();
+    $(document).ready(function() {
+        $('#options').on('change', function(e) {
+            let selectedValues = $(this).val();
             $wire.$set('selectedOptions', selectedValues);
         });
-    });
 
+    });
 </script>
 
 @endscript
