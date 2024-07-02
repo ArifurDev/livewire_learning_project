@@ -5,7 +5,11 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
+<<<<<<< HEAD
         "php": "^8.2",
+=======
+        "php": "^8.1",
+>>>>>>> ac446c1a869bd18a0010bff172e5c13b26c9f6be
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
@@ -67,6 +71,7 @@
         }
     },
     "minimum-stability": "stable",
+<<<<<<< HEAD
     "prefer-stable": true,
     "repositories": {
         "packagist": {
@@ -74,4 +79,7 @@
             "url": "https://packagist.jp"
         }
     }
+=======
+    "prefer-stable": true
+>>>>>>> ac446c1a869bd18a0010bff172e5c13b26c9f6be
 }

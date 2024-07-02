@@ -36,7 +36,11 @@
                 <nav class="iq-sidebar-menu">
                     <ul id="iq-sidebar-toggle" class="iq-menu">
                         <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
+<<<<<<< HEAD
                             <a href="{{ route('dashboard') }}" class="svg-icon">
+=======
+                            <a href="{{ route('dashbord') }}" class="svg-icon">
+>>>>>>> ac446c1a869bd18a0010bff172e5c13b26c9f6be
                                 <svg class="svg-icon" id="p-dash1" width="20" height="20"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"

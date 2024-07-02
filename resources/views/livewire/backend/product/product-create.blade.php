@@ -88,12 +88,28 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
  
+=======
+            {{-- Attribute --}}
+>>>>>>> ac446c1a869bd18a0010bff172e5c13b26c9f6be
             <div class="card">
                 <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
+<<<<<<< HEAD
                                   <livewire:attribute-selector wire:model.live='selectedOptions' />
+=======
+                                <div class="form-group">
+                                    <label>Select Attributes</label>
+                                    <select class="form-control mb-3 js-example-basic-multiple" wair:model="selectedAttributes" multiple="multiple">
+                                        @foreach ($attributes as $attribute)
+                                          <option value="{{ $attribute->name }}">{{ $attribute->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+>>>>>>> ac446c1a869bd18a0010bff172e5c13b26c9f6be
                             </div>
                         </div>
                 </div>

@@ -78,8 +78,13 @@
 
             $('.js-example-basic-single').select2();
         });
+<<<<<<< HEAD
     </script>
     
+=======
+
+    </script>
+>>>>>>> ac446c1a869bd18a0010bff172e5c13b26c9f6be
 
     <!--file upload-->
     <script src=" {{ asset('backend/assets/fileUpload/fileUpload.js') }}"></script>
