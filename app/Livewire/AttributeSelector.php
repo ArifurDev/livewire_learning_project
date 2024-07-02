@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-<<<<<<< HEAD
 use App\Models\Attribute;
 
 class AttributeSelector extends Component
@@ -108,14 +107,7 @@ class AttributeSelector extends Component
         return view('livewire.backend.product.attribute-selector',[
             'attributes' => Attribute::latest()->get(),
         ]);
-=======
 
-class AttributeSelector extends Component
-{
-    public function render()
-    {
-        return view('livewire.attribute-selector');
->>>>>>> ac446c1a869bd18a0010bff172e5c13b26c9f6be
     }
 }
 
