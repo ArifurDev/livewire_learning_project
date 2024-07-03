@@ -1,7 +1,7 @@
 <div>
     <div class="form-group" wire:ignore>
             <label for="options">Select Attributes:</label>
-            <select class="form-control mb-3 js-example-basic-multiple" multiple id="options">
+            <select class="form-control mb-3 js-example-basic-multiple" multiple="multiple" id="options">
                 @foreach ($attributes as $attribute)
                     <option value="{{ $attribute->name }}">{{ $attribute->name }}</option>
                 @endforeach

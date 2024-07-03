@@ -42,7 +42,7 @@ Route::get('/dashboard/login',AdminLogin::class)->middleware('guest')->name('das
 
 Route::middleware('auth')->group(function () {
     //Dashboard
-    Route::get('/dashboard', Dashboard::class)->name('dashbord');
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     //category
     Route::get('/category', Category::class)->name('category.create');
