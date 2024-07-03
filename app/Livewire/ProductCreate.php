@@ -13,6 +13,16 @@ use Livewire\Component;
 
 class ProductCreate extends Component
 {
+    // protected $rules = [
+    //     'name' => 'required|unique:categories',
+    //     'image' => 'required|image|max:2048',
+    //     'banner' => 'required|image|max:2048',
+    // ];
+
+    public function submitForm()
+    {
+
+    }
     public function render()
     {
         return view('livewire.backend.product.product-create',[
