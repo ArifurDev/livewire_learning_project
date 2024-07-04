@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('sku')->nullable();
-            $table->string('barCode')->nullable();
+            $table->string('code')->nullable();
             $table->longText('description');
+            $table->json('images'); // JSON column for image paths
+
             $table->longText('warranty')->nullable();
 
             $table->integer('price');
@@ -26,7 +28,6 @@ return new class extends Migration
             $table->string('discountType')->nullable();
             $table->integer('stock');
 
-            $table->string('image');
 
             $table->string('catrgoryId');
             $table->string('status');
