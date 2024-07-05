@@ -22,12 +22,10 @@ return new class extends Migration
 
             $table->longText('warranty')->nullable();
 
-            $table->string('price');
+            $table->string('price')->default('0');
             $table->string('unit');
             $table->integer('discount')->nullable();
             $table->string('discountType')->nullable();
-            $table->integer('stock');
-
 
             $table->unsignedBigInteger('catrgory_id');// Foreign key
             $table->string('status');

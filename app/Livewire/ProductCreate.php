@@ -17,24 +17,24 @@ class ProductCreate extends Component
 {
     use WithFileUploads;
 
-    public $name,$sku,$code,$description,$images = [], $warranty, $price,$unit, $discount, $discountType, $stock, $category = [], $status, $tags;
+    public $name , $sku , $code , $description , $images = [] , $warranty , $price , $unit , $discount , $discountType , $stock , $category = [] , $status , $tags , $variantes , $subProductVariates ;
 
-    public $variantes, $subProductVariates;
     protected $rules = [
-        'name' => 'required',
-        'sku' => 'required',
+        'name' => 'required|unique:products',
+        'sku' => 'required|unique:products',
         'code' => 'required|unique:products',
         'description' => 'required',
         'images.*' => 'required|image|max:2048',
-        'selectedOptions' => 'required',
-        'price' => 'required|numeric',
-        'unit' => 'required',
-        'discount' => 'required|numeric',
-        'discountType' => 'required',
-        'stock' => 'required|integer',
-        'category' => 'required',
+        'warranty' => 'required|string',
+
+        'price' => 'numeric',
+        'unit' => 'string',
+        'discount' => 'numeric',
+        'discountType' => 'string',
+        'stock' => 'integer',
+        'category' => 'required|array',
         'status' => 'required',
-        'tags' => 'required',
+        'tags' => 'required|array',
     ];
 
 
@@ -81,12 +81,10 @@ class ProductCreate extends Component
         //             'code' => $this->code,
         //             'description' => $this->description,
         //             'images' => json_encode($uploadedImages), // Store the image paths as JSON
-        //             'selectedOptions' => $this->selectedOptions,
         //             'price' => $this->price,
         //             'unit' => $this->unit,
         //             'discount' => $this->discount,
         //             'discountType' => $this->discountType,
-        //             'stock' => $this->stock,
         //             'categores' => json_encode($this->category), // Assuming you have a category_id field
         //             'status' => $this->status,
         //             'tags' => json_encode($this->tags), // Store the tags as JSON

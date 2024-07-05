@@ -119,6 +119,7 @@ class AttributeSelector extends Component
 
     public function render()
     {
+        //call method
         $this->add();
         $this->subVariater();
 
