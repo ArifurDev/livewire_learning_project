@@ -39,6 +39,7 @@ class TagsInput extends Component
 
     public function render()
     {
+        $this->dispatch('getTags', $this->tags); // Emitting the event with the tags
         return view('livewire.backend.product.tags-input');
     }
 }

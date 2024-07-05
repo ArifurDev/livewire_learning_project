@@ -22,18 +22,24 @@ return new class extends Migration
 
             $table->longText('warranty')->nullable();
 
-            $table->integer('price');
+            $table->string('price');
             $table->string('unit');
             $table->integer('discount')->nullable();
             $table->string('discountType')->nullable();
             $table->integer('stock');
 
 
-            $table->string('catrgoryId');
+            $table->unsignedBigInteger('catrgory_id');// Foreign key
             $table->string('status');
+            $table->json('tags'); // JSON column for tags
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
+
+
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+
         });
     }
 

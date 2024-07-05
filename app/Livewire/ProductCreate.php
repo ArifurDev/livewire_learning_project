@@ -8,29 +8,18 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 
 #[Layout('components\layouts\backend')]
 #[Title('Add Product')]
 
 class ProductCreate extends Component
 {
-    public $name;
-    public $sku;
-    public $code;
-    public $description;
-    public $images = [];
-    public $warranty;
-    public $selectedOptions;
-    public $price;
-    public $unit;
-    public $discount;
-    public $discountType;
-    public $stock;
-    public $category = [];
-    public $status;
-    public $tags = [];
+    use WithFileUploads;
 
+    public $name,$sku,$code,$description,$images = [], $warranty, $price,$unit, $discount, $discountType, $stock, $category = [], $status, $tags;
 
+    public $variantes, $subProductVariates;
     protected $rules = [
         'name' => 'required',
         'sku' => 'required',
@@ -48,38 +37,61 @@ class ProductCreate extends Component
         'tags' => 'required',
     ];
 
+
+
+    protected $listeners = [
+        'getTags' => 'setTags',
+        'getVariantes' => 'setVariantes',
+        'getSubVariantes' => 'setSubVariantes',
+    ];
+
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+    public function setVariantes($variantes)
+    {
+        $this->variantes = $variantes;
+    }
+
+    public function setSubVariantes($subProductVariates)
+    {
+        $this->subProductVariates = $subProductVariates;
+    }
+
     public function submitForm()
     {
         // $this->validate();
-         dump($this->description);
+        dump($this->variantes);
 
-           // Handle file uploads and store paths in an array
+        //    // Handle file uploads and store paths in an array
         //    $uploadedImages = [];
         //    foreach ($this->images as $image) {
         //        $imageFileName = Str::random(10) . '.' . time() . '.' . $image->extension();
         //     //    $image->storeAs('productImages', $imageFileName, 'public'); // Store in the productImages folder
-        //        $uploadedImages[] = 'productImages/' . $imageFileName; // Add the path to the array
+        //        $uploadedImages[] =  $imageFileName; // Add the path to the array
         //    }
    
 
-                // Save the product data to the database
-                // dump([
-                //     'name' => $this->name,
-                //     'sku' => $this->sku,
-                //     'code' => $this->code,
-                //     'description' => $this->description,
-                //     'images' => json_encode($uploadedImages), // Store the image paths as JSON
-                //     'selectedOptions' => $this->selectedOptions,
-                //     'price' => $this->price,
-                //     'unit' => $this->unit,
-                //     'discount' => $this->discount,
-                //     'discountType' => $this->discountType,
-                //     'stock' => $this->stock,
-                //     'categores' => json_encode($this->category), // Assuming you have a category_id field
-                //     'status' => $this->status,
-                //     'tags' => json_encode($this->tags), // Store the tags as JSON
-                //     'warranty' => $this->warranty, // Store the warranty
-                // ]);
+        //         // Save the product data to the database
+        //         dump([
+        //             'name' => $this->name,
+        //             'sku' => $this->sku,
+        //             'code' => $this->code,
+        //             'description' => $this->description,
+        //             'images' => json_encode($uploadedImages), // Store the image paths as JSON
+        //             'selectedOptions' => $this->selectedOptions,
+        //             'price' => $this->price,
+        //             'unit' => $this->unit,
+        //             'discount' => $this->discount,
+        //             'discountType' => $this->discountType,
+        //             'stock' => $this->stock,
+        //             'categores' => json_encode($this->category), // Assuming you have a category_id field
+        //             'status' => $this->status,
+        //             'tags' => json_encode($this->tags), // Store the tags as JSON
+        //             'warranty' => $this->warranty, // Store the warranty
+        //         ]);
     }
     public function render()
     {

@@ -2,7 +2,7 @@
     <div class="row">
         <h4 class="ml-3 mb-2">Add New Product</h4>
     </div>
-   <form wire:submit.prevent="submitForm">
+   <form wire:submit.prevent="submitForm" enctype="multipart/form-data">
     <div class="row">
             <div class="col-sm-8">
                 <div class="card">
@@ -185,9 +185,9 @@
                     <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group ">
+                                    <div class="form-group" wire:ignore>
                                         <label>Category*</label>
-                                        <select class="form-control mb-3 js-example-basic-multiple" wire:model="category" multiple>
+                                        <select class="form-control mb-3 js-example-basic-multiple" id="categoryOptions" wire:model="category" multiple="multiple">
                                             <option value="">Select category</option>
                                             @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -230,7 +230,7 @@
             </div>
         </div>
         <div class="row d-flex justify-content-end p-3">
-            <button type="reset" class="btn btn-danger mr-2">Reset</button>
+            <!-- <button type="reset" class="btn btn-danger mr-2">Reset</button> -->
             <button type="submit" class="btn btn-primary ">Submit</button>
         </div>
    </form>
@@ -241,24 +241,33 @@
 
   @script
   <script>
+        //summernote
         $('#description').summernote({
-          placeholder: 'Enter product description',
-          tabsize: 2,
-          height: 100,
-          toolbar: [
-          ['style', ['style']],
-          ['font', ['bold', 'underline', 'clear']],
-          ['color', ['color']],
-          ['para', ['ul', 'ol', 'paragraph']],
-          ['table', ['table']],
-          ['insert', ['link', 'picture', 'video']],
-          ['view', ['fullscreen', 'codeview', 'help']]
-        ],
-        callbacks: {
-            onChange: function(contents, $editable) {
-                 @this.set('description',contents)
+                placeholder: 'Enter product description',
+                tabsize: 2,
+                height: 100,
+                toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    @this.set('description',contents)
+                }
             }
-        }
+        });
+
+        //catagory select
+        $(document).ready(function() {
+            $('#categoryOptions').on('change', function(e) {
+                let selectCategories = $(this).val();
+                $wire.$set('category', selectCategories);
+            });
         });
       </script>
 @endscript
