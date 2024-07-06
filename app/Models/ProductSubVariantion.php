@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ProductSubVariantion extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'product_id',
+        'variant',
+        'price',
+    ];
 }

@@ -11,17 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_variations', function (Blueprint $table) {
+        Schema::create('product_stocks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id')->nullable();// Foreign key
-            $table->string('variant_type')->nullable(); // e.g., color, size, etc.
-            $table->string('variant_value')->nullable(); // e.g., red, large, etc.
+            $table->unsignedBigInteger('sub_variant_id'); // Foreign key
+             
+            $table->integer('stock');
+
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
 
             // Define the foreign key constraint
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-
+            $table->foreign('sub_variant_id')->references('id')->on('product_sub_variantions')->onDelete('cascade');
         });
     }
 
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_variations');
+        Schema::dropIfExists('product_stocks');
     }
 };

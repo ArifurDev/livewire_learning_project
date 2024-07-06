@@ -97,11 +97,27 @@ class AttributeSelector extends Component
                     $subVariantePrice = $this->subVariantePrice[$key] ?? '';
                     $subVarianteStock = $this->subVarianteStock[$key] ?? 0;
 
-                    dump([
-                        'variant'=> $key,
-                        'price'=> $subVariantePrice,
-                        'stock'=> $subVarianteStock
-                    ]);
+                    $entryExists = false;
+
+                    // Check if an entry with the same key already exists
+                    foreach ($this->subProductVariates as &$entry) {
+                        if ($entry['variant'] === $key) {
+                            // Update existing entry
+                            $entry['price'] = $subVariantePrice;
+                            $entry['stock'] = $subVarianteStock;
+                            $entryExists = true;
+                            break;
+                        }
+                    }
+    
+                    // If the entry does not exist, add a new one
+                    if (!$entryExists) {
+                        $this->subProductVariates[] = [
+                            'variant' => $key,
+                            'price' => $subVariantePrice,
+                            'stock' => $subVarianteStock,
+                        ];
+                    }
 
                     // $decodedCombination = json_decode(json_encode($combination), true);
 
