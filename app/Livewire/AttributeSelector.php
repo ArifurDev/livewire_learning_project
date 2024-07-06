@@ -18,16 +18,16 @@ class AttributeSelector extends Component
     public $explodedVariantes = [];
     public $combinations = [];
 
-    public $subVariante = [];
-    public $subVarianteStock = [];
+    public $subVariantePrice = []; //inputs filds 
+    public $subVarianteStock = []; //inputs filds 
 
-    public $subProductVariates = [];
+    public $subProductVariates = []; //empty array
 
     public function clearCombinations()
     {
         $this->explodedVariantes = [];
         $this->combinations = [];
-        $this->subVariante = [];
+        $this->subVariantePrice = [];
         $this->subVarianteStock = [];
         $this->subProductVariates = [];
 
@@ -45,8 +45,8 @@ class AttributeSelector extends Component
 
                         // Check if the variante already exists
                         $variantEntry = [
-                            'attribute' => $value,
-                            'variant' => $this->variante[$value] ?? '0',
+                            'variant_type' => $value,
+                            'variant_value' => $this->variante[$value] ?? '0',
                         ];
                         if (!in_array($variantEntry, $this->variantes, true)) {
                             // Store variantes if it's not already in the array
@@ -94,21 +94,40 @@ class AttributeSelector extends Component
             if (!empty($this->combinations)) {
                 foreach ($this->combinations as $combination) {
                     $key = implode('-', $combination);
-                    $subVariante = $this->subVariante[$key] ?? '';
+                    $subVariantePrice = $this->subVariantePrice[$key] ?? '';
                     $subVarianteStock = $this->subVarianteStock[$key] ?? 0;
 
-                    $decodedCombination = json_decode(json_encode($combination), true);
+                    dump([
+                        'variant'=> $key,
+                        'price'=> $subVariantePrice,
+                        'stock'=> $subVarianteStock
+                    ]);
 
-                    foreach ($decodedCombination as $attributeKey => $attributeValue) {
-                        $sub_attribute = strtolower($attributeKey);
-                        $sub_variant = $attributeValue;
-                    }
-                    $this->subProductVariates[] = [
-                        'sub_attribure' => $sub_attribute,
-                        'sub_variante' => $sub_variant,
-                        'sub_variante_price' => $subVariante,
-                        'sub_variante_stock' => $subVarianteStock,
-                    ];
+                    // $decodedCombination = json_decode(json_encode($combination), true);
+
+                    // foreach ($decodedCombination as $attributeKey => $attributeValue) {
+                    //     $sub_attribute = strtolower($attributeKey);
+                    //     $sub_variant = $attributeValue;
+
+                        // Check if the variante already exists
+                        // $subVariantEntry = [
+                        //     'sub_attribure' => $sub_attribute,
+                        //     'sub_variante' => $sub_variant,
+                        //     'sub_variante_price' => $subVariante,
+                        //     'sub_variante_stock' => $subVarianteStock,
+                        // ];
+                        // if (!in_array($subVariantEntry, $this->subProductVariates, true)) {
+                        //     // Store variantes if it's not already in the array
+                        //     $this->subProductVariates[] = $subVariantEntry;
+                        // }
+
+                        // $this->subProductVariates[] = [
+                        //     'sub_attribure' => $sub_attribute,
+                        //     'sub_variante' => $sub_variant,
+                        //     'sub_variante_price' => $subVariante,
+                        //     'sub_variante_stock' => $subVarianteStock,
+                        // ];
+                    // }
                 }
             }
         } catch (\Throwable $th) {

@@ -63,7 +63,7 @@ class ProductCreate extends Component
     public function submitForm()
     {
         // $this->validate();
-        dump($this->variantes);
+        dump($this->subProductVariates);
 
         //    // Handle file uploads and store paths in an array
         //    $uploadedImages = [];

@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter product price" wire:model.lazy="subVariante.{{ implode('-', $combination) }}" wire:keydown.enter.prevent="subVariater">
+                            <input type="text" class="form-control" placeholder="Enter product price" wire:model.lazy="subVariantePrice.{{ implode('-', $combination) }}" wire:keydown.enter.prevent="subVariater">
                         </div>
                     </div>
                     <div class="col-md-4">
