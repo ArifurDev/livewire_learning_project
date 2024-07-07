@@ -230,7 +230,7 @@
             </div>
         </div>
         <div class="row d-flex justify-content-end p-3">
-            <!-- <button type="reset" class="btn btn-danger mr-2">Reset</button> -->
+            <button type="reset" class="btn btn-danger mr-2">Reset</button>
             <button type="submit" class="btn btn-primary ">Submit</button>
         </div>
    </form>

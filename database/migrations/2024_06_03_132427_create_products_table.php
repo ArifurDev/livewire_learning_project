@@ -22,7 +22,7 @@ return new class extends Migration
 
             $table->longText('warranty')->nullable();
 
-            $table->decimal('price', 8, 2)->default(0);
+            $table->decimal('price', 8, 2)->nullable();
             $table->string('unit');
             $table->integer('discount')->nullable();
             $table->string('discountType')->nullable();
