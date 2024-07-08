@@ -31,11 +31,11 @@ class ProductCreate extends Component
         'images.*' => 'required|image|max:2048',
         'warranty' => 'required|string',
 
-        'price' => 'numeric',
-        'unit' => 'string',
-        'discount' => 'numeric',
-        'discountType' => 'string',
-        'stock' => 'integer',
+        'price' => 'nullable|numeric',
+        'unit' => 'required|string',
+        'discount' => 'nullable|numeric',
+        'discountType' => 'nullable|string',
+        'stock' => 'nullable|integer',
         'category' => 'required|array',
         'status' => 'required|string',
         'tags' => 'required|array',
@@ -68,12 +68,15 @@ class ProductCreate extends Component
     {
         $this->validate();
 
+        // produce a slug based on the activity title
+        $slug = Str::slug($this->name);
 
         //Handle file uploads and store paths in an array
         $uploadedImages = [];
         foreach ($this->images as $image) {
-            $imageFileName = Str::random(10) . '.' . time() . '.' . $image->extension();
-            $image->storeAs('productImages', $imageFileName, 'public'); // Store in the productImages folder
+            // Generate an SEO-friendly image file name
+            $imageFileName = $slug . '-' . Str::random(5) . time() . '.' . $image->extension();
+            // $image->storeAs('productImages', $imageFileName, 'public'); // Store in the productImages folder
             $uploadedImages[] = $imageFileName; // Add the path to the array
         }
 
@@ -123,13 +126,9 @@ class ProductCreate extends Component
         $this->description = $dom->saveHTML();
 
         /**
-         * Save the product data to the database start
+         * Save the product data to the database 
          */
-
-        // produce a slug based on the activity title
-        $slug = Str::slug($this->name);
-
-        //insert the product data to the database and get sql id
+        // Save the product data to the database and get the product ID
         $product_id = Product::insertGetId([
             'name' => $this->name,
             'slug' => $slug,
@@ -148,39 +147,38 @@ class ProductCreate extends Component
         ]);
 
         /**
-         * Insert data product variations model
+         * Insert data into the product variations model
          */
-        if ($this->variations) {
-            foreach ($this->variations as $variation) {
+        if ($this->variantes) {
+            foreach ($this->variantes as $variante) {
                 ProductVariation::create([
                     'product_id' => $product_id,
-                    'variant_type' => $variation['variant_type'],
-                    'variant_value' => $variation['variant_value'],
+                    'variant_type' => $variante['variant_type'],
+                    'variant_value' => $variante['variant_value'],
                 ]);
             }
         }
 
         /**
-         * Insert data product variations model
+         * Insert data into the product sub-variations model
          */
         $product_sub_variante_has_stock = [];
         if ($this->subProductVariates) {
-            foreach ($this->subProductVariates as $subProductVariates) {
+            foreach ($this->subProductVariates as $subProductVariate) {
                 $sub_variant_id = ProductSubVariantion::insertGetId([
                     'product_id' => $product_id,
-                    'variant' => $subProductVariates['variant'],
-                    'price' => $subProductVariates['price'],
-                    'stock' => $subProductVariates['stock'],
+                    'variant' => $subProductVariate['variant'],
+                    'price' => $subProductVariate['price']
                 ]);
 
-                $product_sub_variante_has_stock[] = $subProductVariates['stock'];
+                $product_sub_variante_has_stock[] = $subProductVariate['stock'];
 
-                //if product sub variante store stock value .. insert data product stock
-                if ($subProductVariates['stock']) {
+                // If product sub-variant has stock, insert data into product stock
+                if ($subProductVariate['stock']) {
                     ProductStock::create([
                         'product_id' => $product_id,
                         'sub_variant_id' => $sub_variant_id,
-                        'stock' => $subProductVariates['stock'],
+                        'stock' => $subProductVariate['stock'],
                     ]);
                 }
             }
@@ -188,13 +186,13 @@ class ProductCreate extends Component
 
         /**
          * Insert data product stock model
-         * Code to handle the case when $product_sub_variante_has_stock is empty and $this->stock is not empty
+         * Handle the case when there is no sub-variant stock but there is a general stock
          */
-        if (empty($product_sub_variante_has_stock) && !empty($this->stock)) {
+        if (empty($product_sub_variante_has_stock) && $this->stock != '') {
             // Assuming you want to create a new stock record
             ProductStock::create([
                 'product_id' => $product_id,
-                'sub_variant_id' => '',
+                'sub_variant_id' => null,
                 'stock' => $this->stock,
             ]);
         }
@@ -205,11 +203,19 @@ class ProductCreate extends Component
         // Trigger a success notification
         return $this->dispatch('toast', message: 'Product created successfully!', notify:'success' );
     }
-    public function resetInputFields()
+    public function resetInputFields()    
     {
         $this->reset([
-            'name', 'sku', 'code', 'description', 'images', 'warranty', 'price', 'unit', 'discount', 'discountType', 'stock', 'category', 'status', 'tags', 'variantes', 'subProductVariates'
+            'name', 'sku', 'code', 'warranty', 'price', 'unit', 'discount', 'discountType', 'stock', 'status', 'tags', 'variantes', 'subProductVariates'
         ]);
+
+        $this->description = '';
+        $this->category = '';
+        $this->tags = '';
+        $this->variantes = '';
+        $this->subProductVariates = '';
+        dump($this->images);
+        
     }
     public function render()
     {
