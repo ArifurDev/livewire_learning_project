@@ -14,15 +14,19 @@ class TagsInput extends Component
         try {
             $tag = $this->newTag;
             // Perform validation
-            if ($tag !== '' && is_string($tag) && !preg_match('/[!@#$%^&*()_+\-=\[\]{};:\'"\\|,.<>\/?`~\d]/', $tag)) {
-                if (!in_array($tag, $this->tags) && $tag !== '') {
+            if ($tag !== '' && is_string($tag) && !preg_match('/[!@#$%^&*()_+\-=\[\]{};:\'"\\|,.<>\/?`~]/', $tag)) {
+                if (!in_array($tag, $this->tags)) {
                     $this->tags[] = $tag;
                     $this->reset('newTag');
+                } else {
+                    $this->reset('newTag');
+                    return $this->dispatch('toast', message: 'Duplicate tag!', notify: 'error');
                 }
-            }else{
+            } else {
                 $this->reset('newTag');
-                return $this->dispatch('toast', message: 'Invalid tag!', notify:'error');
+                return $this->dispatch('toast', message: 'Invalid tag!', notify: 'error');
             }
+
         } catch (\Throwable $th) {
             //throw $th;
             $this->reset('newTag');

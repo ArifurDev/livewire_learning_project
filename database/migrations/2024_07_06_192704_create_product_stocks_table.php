@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('product_stocks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id')->nullable();// Foreign key
-            $table->unsignedBigInteger('sub_variant_id'); // Foreign key
+            $table->unsignedBigInteger('sub_variant_id')->nullable(); // Foreign key
              
             $table->integer('stock');
 

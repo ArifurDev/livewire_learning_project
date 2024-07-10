@@ -214,8 +214,6 @@ class ProductCreate extends Component
         $this->tags = '';
         $this->variantes = '';
         $this->subProductVariates = '';
-        dump($this->images);
-        
     }
     public function render()
     {
