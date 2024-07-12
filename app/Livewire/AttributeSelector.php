@@ -30,8 +30,8 @@ class AttributeSelector extends Component
         $this->subVariantePrice = [];
         $this->subVarianteStock = [];
         $this->subProductVariates = [];
-
         $this->variantes = [];
+        $this->variante = [];
     }
 
     public function add()

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('sku')->nullable();
             $table->string('code')->nullable();
             $table->longText('description');
-            $table->json('images'); // JSON column for image paths
 
             $table->longText('warranty')->nullable();
 
@@ -27,14 +26,11 @@ return new class extends Migration
             $table->integer('discount')->nullable();
             $table->string('discountType')->nullable();
 
-            $table->json('categories_id');
             $table->string('status');
             $table->json('tags'); // JSON column for tags
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
-
-
         });
     }
 

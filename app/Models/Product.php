@@ -14,13 +14,11 @@ class Product extends Model
         'sku',
         'code',
         'description',
-        'images',
         'warranty',
         'price',
         'unit',
         'discount',
         'discount_type',
-        'categories_id',
         'status',
         'tags',
     ];

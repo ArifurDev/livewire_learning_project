@@ -205,6 +205,7 @@
                                     <div class="form-group ">
                                         <label>Status*</label>
                                         <select class="form-control mb-3" wire:model="status">
+                                            <option value="">--Select Status--</option>
                                             <option value="Published">Published</option>
                                             <option value="Inactive">Inactive</option>
                                             <option value="Schedule">Schedule</option>
