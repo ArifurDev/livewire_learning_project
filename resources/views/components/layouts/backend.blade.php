@@ -50,7 +50,7 @@
                                 <span class="ml-4">Dashboards</span>
                             </a>
                         </li>
-                        <li class=" ">
+                        <li class="{{ Request::routeIs(['product.create','product.index']) ? 'active' : '' }}">
                             <a href="#product" class="collapsed" data-toggle="collapse" aria-expanded="false">
                                 <svg class="svg-icon" id="p-dash2" width="20" height="20"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -70,12 +70,12 @@
                                 </svg>
                             </a>
                             <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                                <li class="">
-                                    <a href="../backend/page-list-product.html">
+                                <li class="{{ Request::routeIs('product.index') ? 'active' : '' }}">
+                                    <a href="{{ route('product.index') }}">
                                         <i class="las la-minus"></i><span>List Product</span>
                                     </a>
                                 </li>
-                                <li class="">
+                                <li class="{{ Request::routeIs('product.create') ? 'active' : '' }}">
                                     <a href="{{ route('product.create') }}">
                                         <i class="las la-minus"></i><span>Add Product</span>
                                     </a>

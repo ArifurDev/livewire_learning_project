@@ -18,8 +18,57 @@ class Product extends Model
         'price',
         'unit',
         'discount',
-        'discount_type',
+        'discountType',
         'status',
         'tags',
     ];
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'product_categories');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    public function variations()
+    {
+        return $this->hasMany(ProductVariation::class);
+    }
+
+    public function subVariations()
+    {
+        return $this->hasMany(ProductSubVariantion::class);
+    }
+
+    public function stocks()
+    {
+        return $this->hasMany(ProductStock::class);
+    }
+
+
+    //Search
+    public function scopeSearch($query, $value)
+    {
+        $query->whereAny(
+            [
+                'name',
+                'slug',
+                'sku',
+                'code',
+                'description',
+                'warranty',
+                'price',
+                'unit',
+                'discount',
+                'discountType',
+                'status',
+                'tags',
+            ],
+            'LIKE',
+            "%$value%"
+        );
+    }
 }

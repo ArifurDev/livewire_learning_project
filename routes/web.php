@@ -8,6 +8,7 @@ use App\Livewire\CategoryEdit;
 use App\Livewire\CategoryList;
 use App\Livewire\Dashboard;
 use App\Livewire\ProductCreate;
+use App\Livewire\ProductIndex;
 use App\Livewire\Variants;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,7 @@ Route::middleware('auth')->group(function () {
 
     //product
     Route::get('/product/create', ProductCreate::class)->name('product.create');
+    Route::get('/productes',ProductIndex::class)->name('product.index');
 
 });
 require __DIR__.'/auth.php';
