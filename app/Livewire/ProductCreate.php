@@ -73,7 +73,7 @@ class ProductCreate extends Component
         // produce a slug based on the activity title
         $slug = Str::slug($this->name);
 
-        //product image 
+        //product image
         $uploadedImages = $this->uploadImages($slug);
         //product desciption method call
         $this->processDescriptionImages();
@@ -86,7 +86,8 @@ class ProductCreate extends Component
         //product stock method
         $this->storeProductStock($product_id, $product_sub_variante_has_stock);
 
-        $this->resetInputFields();
+        // $this->resetInputFields();
+        $this->resetPage();
         $this->dispatch('toast', ['message' => 'Product created successfully!', 'notify' => 'success']);
     }
 
@@ -161,7 +162,6 @@ class ProductCreate extends Component
             $body = $dom->getElementsByTagName('body')->item(0);
             $this->description = $dom->saveHTML($body);
         }
-
     }
 
 
@@ -197,7 +197,7 @@ class ProductCreate extends Component
             ]);
         }
 
-        //Store the category id 
+        //Store the category id
         foreach ($this->category as $category_id) {
             ProductCategories::create([
                 'product_id' => $product->id,
@@ -353,7 +353,7 @@ class ProductCreate extends Component
     //     $this->description = $dom->saveHTML();
 
     //     /**
-    //      * Save the product data to the database 
+    //      * Save the product data to the database
     //      */
     //     // Save the product data to the database and get the product ID
     //     $product_id = Product::insertGetId([

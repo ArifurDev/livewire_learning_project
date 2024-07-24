@@ -74,7 +74,7 @@ class Attribute extends Component
         }
 
         $attributes = $query->latest()->paginate(10);
-        
+
         return view('livewire.backend.product.attribute',[
             'attributes' => $attributes
         ]);

@@ -35,7 +35,7 @@ class CategoryEdit extends Component
     public function update()
     {
         $this->validate();
-        
+
         $category = Category::find($this->categoryId);
 
         $category->name = $this->name;
@@ -76,8 +76,10 @@ class CategoryEdit extends Component
     }
     public function render()
     {
+        $category = Category::find($this->categoryId);
+        $this->name = $category->name;
         return view('livewire.backend.category.category-edit',[
-            'category' => Category::find($this->categoryId)
+            'category' => $category
         ]);
     }
 }

@@ -31,10 +31,6 @@
                         'displayName' => 'Name'
                     ])
                     @include('livewire.backend.product.includes.table-sortable-th', [
-                        'name' => 'slug',
-                        'displayName' => 'Slug'
-                    ])
-                    @include('livewire.backend.product.includes.table-sortable-th', [
                         'name' => 'sku',
                         'displayName' => 'SKU'
                     ])
@@ -70,16 +66,19 @@
                                     <span class="full-text" style="display: none;">{{ $product->name }}</span>
                                 @endif
                             </td>
-                            <td>
-                                {{ Str::limit($product->slug, 20) }}
-                                @if (Str::length($product->slug) > 20)
-                                    <a href="#" class="read-more">Read More</a>
-                                    <span class="full-text" style="display: none;">{{ $product->slug }}</span>
-                                @endif
-                            </td>
                             <td>{{ $product->sku }}</td>
                             <td>{{ $product->code }}</td>
-                            <td>{{ $product->status }}</td>
+                            <td>
+                                @if ($editID == $product->id)
+                                <select wire:model.live="editStatus">
+                                    <option value="Published" {{ $editStatus === "published" ? 'selected' : ''}}>Published</option>
+                                    <option value="Inactive" {{ $editStatus === "Inactive" ? 'selected' : ''}}>Inactive</option>
+                                    <option value="Schedule" {{ $editStatus === "Schedule" ? 'selected' : ''}}>Schedule</option>
+                                </select>
+                                @else
+                                <span wire:click="edit({{ $product->id }})">{{ $product->status }}</span>
+                                @endif
+                            </td>
                             <td>{{ $product->created_at->diffForHumans() }}</td>
                             <td>{{ $product->updated_at->diffForHumans() }}</td>
                             <td>
@@ -89,10 +88,11 @@
                                         Acction
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item" href="#">Edit</a>
-                                        <a class="dropdown-item" href="#">Show</a>
+                                        <a class="dropdown-item" href="{{ route('product.edit',['id'=>$product->id,'slug'=>$product->slug]) }}">Edit</a>
+                                        <a class="dropdown-item" href="{{ route('product.show',['id'=>$product->id,'slug'=>$product->slug]) }}">Show</a>
                                         <button class="dropdown-item" type="button"
-                                            wire:confirm='Are you sure to delete this Post ?'>Delete</button>
+                                            wire:confirm='Are you sure to delete this Post ?'
+                                            wire:click="delete({{ $product->id }})">Delete</button>
                                     </div>
                                 </div>
                             </td>
@@ -134,4 +134,7 @@
         });
     });
 </script>
+
 @endscript
+
+

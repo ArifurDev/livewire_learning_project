@@ -13,4 +13,29 @@ class ProductStock extends Model
         'sub_variant_id',
         'stock',
     ];
+
+
+
+    //  //Search
+    //  public function scopeSearch($query, $value)
+    //  {
+    //      $query->whereAny(
+    //          [
+    //              'name',
+    //              'slug',
+    //              'sku',
+    //              'code',
+    //              'description',
+    //              'warranty',
+    //              'price',
+    //              'unit',
+    //              'discount',
+    //              'discountType',
+    //              'status',
+    //              'tags',
+    //          ],
+    //          'LIKE',
+    //          "%$value%"
+    //      );
+    //  }
 }

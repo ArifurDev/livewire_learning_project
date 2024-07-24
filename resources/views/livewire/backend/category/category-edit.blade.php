@@ -11,7 +11,7 @@
                             <div class="col-md-12">
                                 <div class="form-group ">
                                     <label>Category Name *</label>
-                                    <input type="text" class="form-control" placeholder="Enter Category Name" wire:model="name" value="{{ $category->name }}">
+                                    <input type="text" class="form-control" placeholder="Enter Category Name" wire:model="name">
 
                                     @error('name')
                                         <span class="text-danger">{{ $message }}</span>
