@@ -8,13 +8,15 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
-                            <div class="row d-flex justify-content-md-between m-2">
-                                <div class="col-md-5"></div>
-                                <div class="col-md-3">
-                                    <div class="input-group mb-3">
-                                        <input type="text" wire:model.live.debounce.300ms="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
-                                    </div>
+                            <div class="row d-flex justify-content-md-between m-2 align-items-end">
+                                {{-- <div class="">
+                                </div> --}}
+                                <div class="input-group mb-3 col-md-3">
+                                    <input type="text" wire:model.live.debounce.300ms="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
                                 </div>
+                                {{-- <div class="  ">
+                                </div> --}}
+                                    <a  class="button btn button-icon btn-primary mb-3 col-md-1"  href="{{ route('order.invoice.show',['orderId' => $orderID]) }}">Invoice</a>
                             </div>
                             <thead>
                                 <tr>
@@ -54,16 +56,6 @@
                                         @if($editID == $orderInfo->id)
                                             <a class="badge bg-primary mr-2" data-toggle="tooltip" data-placement="top" title="Update" wire:click="update"><i class="ri-check-line mr-0"></i></a>
                                         @else
-                                        {{-- <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Acction
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                <button type="button" class="dropdown-item" wire:click="edit({{ $orderInfo->id }})">Edit</button>
-                                                <a class="dropdown-item" href="">Show</a>
-                                                <button class="dropdown-item" type="button" wire:confirm='Are you sure to delete this Order Information?' wire:click="delete({{ $orderInfo->id }})">Delete</button>
-                                            </div>
-                                        </div> --}}
                                         <div class="btn-group btn-group-toggle">
                                             <button type="button" class="button btn button-icon btn-outline-primary"  wire:click="edit({{ $orderInfo->id }})">Edit</button>
                                             <button type="button" class="button btn button-icon btn-outline-primary"  href="#">Show</button>

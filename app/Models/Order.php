@@ -20,7 +20,11 @@ class Order extends Model
         'shiping_charge',
         'order_status'
     ];
-
+    
+    public function orderInfos()
+    {
+        return $this->hasMany(OrderInfo::class);
+    }
 
     //Search
     public function scopeSearch($query, $value)

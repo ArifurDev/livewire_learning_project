@@ -20,12 +20,13 @@ class Subscribers extends Component
     public $editEmail;
     public $editStatus;
     public $search;
-    // public $model;
 
-    // public function mount()
-    // {
-    //     $this->model = app\Models\Subscribe;
-    // }
+    public $modelSubscribe;
+
+    public function mount()
+    {
+        $this->modelSubscribe = new Subscribe;
+    }
 
     public function edit($id)
     {

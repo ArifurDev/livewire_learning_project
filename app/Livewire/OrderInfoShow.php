@@ -75,7 +75,7 @@ class OrderInfoShow extends Component
         $order = Order::findOrFail($orderID);
 
         $vatAmount = $this->vatCalculator($subTotal, $order->vat);
-        $totalAmount = $subTotal + $vatAmount; //$subTotal + vatAmount
+        $totalAmount = $subTotal + $vatAmount + $order->shiping_charge; //$subTotal + vatAmount + shiping charge
         $dueAmount = $totalAmount - $order->pay; //get due amount
 
         //set update value in order model
@@ -110,7 +110,7 @@ class OrderInfoShow extends Component
 
             // $vat = round($subTotal * ($order->vat/100),2); //vat %
             $vatAmount = $this->vatCalculator($subTotal, $order->vat);
-            $totalAmount = $subTotal + $vatAmount; //$subTotal + vatAmount
+            $totalAmount = $subTotal + $vatAmount + $order->shiping_charge; //$subTotal + vatAmount + shiping charge
 
             $dueAmount = $totalAmount - $order->pay; //get due amount
 

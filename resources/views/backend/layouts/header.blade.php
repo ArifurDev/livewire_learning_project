@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="{{ asset('backend/assets') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css">
         <link rel="stylesheet" href="{{ asset('backend/assets') }}/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
         <link rel="stylesheet" href="{{ asset('backend/assets') }}/vendor/remixicon/fonts/remixicon.css">
-        
+
 
 
         <!-- Include Toastr CSS -->
@@ -26,3 +26,5 @@
         <!-- Material Icons -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined">
         @livewireStyles
+
+
