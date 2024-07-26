@@ -7,6 +7,7 @@ use App\Livewire\Category;
 use App\Livewire\CategoryEdit;
 use App\Livewire\CategoryList;
 use App\Livewire\Dashboard;
+use App\Livewire\InvoiceDownload;
 use App\Livewire\OrderInfoShow;
 use App\Livewire\OrderInvoice;
 use App\Livewire\OrderManagement;
@@ -73,6 +74,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/order/management', OrderManagement::class)->name('order.management.index');
     Route::get('/order/information/show/{orderId}', OrderInfoShow::class)->name('order.info.show');
     Route::get('/order/invoice/show/{orderId}', OrderInvoice::class)->name('order.invoice.show');
+    Route::get('/order/invoice/pdf/{orderId}', InvoiceDownload::class)->name('order.invoice.pdf');
 
     //route mangement
     Route::get('/routes/management', Routes::class)->name('routes.setup');
