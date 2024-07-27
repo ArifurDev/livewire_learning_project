@@ -14,9 +14,13 @@
                                 <div class="input-group mb-3 col-md-3">
                                     <input type="text" wire:model.live.debounce.300ms="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
                                 </div>
-                                {{-- <div class="  ">
-                                </div> --}}
-                                    <a  class="button btn button-icon btn-primary mb-3 col-md-1"  href="{{ route('order.invoice.show',['orderId' => $orderID]) }}">Invoice</a>
+                                <div class="col-md-4 mb-2 me-2 text-right">
+                                    <a class="btn btn-sm btn-light" href="{{ route('order.invoice.show',['orderId' => $orderID]) }}">Invoice</a>
+                                    <a href="{{ route('order.invoice.pdf',['orderId'=>$orderID]) }}" class="btn btn-sm btn-light">
+                                        <i class="fa fa-file text-danger me-1"></i> Export as PDF
+                                    </a>
+                                </div>
+
                             </div>
                             <thead>
                                 <tr>
@@ -54,13 +58,13 @@
                                     <td>{{ $orderInfo->updated_at->diffForHumans() }}</td>
                                     <td>
                                         @if($editID == $orderInfo->id)
-                                            <a class="badge bg-primary mr-2" data-toggle="tooltip" data-placement="top" title="Update" wire:click="update"><i class="ri-check-line mr-0"></i></a>
+                                        <a class="badge bg-primary mr-2" data-toggle="tooltip" data-placement="top" title="Update" wire:click="update"><i class="ri-check-line mr-0"></i></a>
                                         @else
                                         <div class="btn-group btn-group-toggle">
-                                            <button type="button" class="button btn button-icon btn-outline-primary"  wire:click="edit({{ $orderInfo->id }})">Edit</button>
-                                            <button type="button" class="button btn button-icon btn-outline-primary"  href="#">Show</button>
-                                            <button type="button" class="button btn button-icon btn-outline-primary"  wire:confirm='Are you sure to delete this Order Information?' wire:click="delete({{ $orderInfo->id }})">Delete</button>
-                                         </div>
+                                            <button type="button" class="button btn button-icon btn-outline-primary" wire:click="edit({{ $orderInfo->id }})">Edit</button>
+                                            <button type="button" class="button btn button-icon btn-outline-primary" href="#">Show</button>
+                                            <button type="button" class="button btn button-icon btn-outline-primary" wire:confirm='Are you sure to delete this Order Information?' wire:click="delete({{ $orderInfo->id }})">Delete</button>
+                                        </div>
                                         @endif
                                     </td>
                                 </tr>

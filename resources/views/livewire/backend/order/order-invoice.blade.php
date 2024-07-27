@@ -1,20 +1,20 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 d-flex justify-content-end">
-                <div class="col-md-8">
+            <div class="col-md-8">
 
-                </div>
-                <div class="col-md-4">
-                    <span class="d-flex justify-content-end">
-                        <a href="{{ route('order.invoice.pdf',['orderId'=>$orderID]) }}" class="btn btn-sm btn-light mb-2 me-2">
-                            <i class="fa fa-file text-danger me-1"></i> Export as PDF
-                        </a>
-                        <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-light mb-2">
-                            <i class="fa fa-print me-1"></i> Print
-                        </a>
-                    </span>
-                </div>
             </div>
+            <div class="col-md-4">
+                <span class="d-flex justify-content-end">
+                    <a href="{{ route('order.invoice.pdf', ['orderId' => $orderID]) }}" class="btn btn-sm btn-light mb-2 me-2">
+                        <i class="fa fa-file text-danger me-1"></i> Export as PDF
+                    </a>
+                    <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-light mb-2 ml-2">
+                        <i class="fa fa-print me-1"></i> Print
+                    </a>
+                </span>
+            </div>
+        </div>
         <!-- BEGIN INVOICE -->
         <div class="col-md-12">
             <div class="row d-flex justify-content-end align-items-end bg-dark">
@@ -23,8 +23,9 @@
                 </div>
                 <div class="col-md-6 mt-1">
                     <h6 class="text-right">invoice ID
-                        <small > #1082</small><br>
-                        <small style="font-size: 10px" class="text-right">{{ $dateTime}} ({{ $authName }})</small>
+                        <small> #1082</small><br>
+                        <small style="font-size: 10px" class="text-right">{{ $dateTime }}
+                            ({{ $authName }})</small>
                     </h6>
                 </div>
             </div>
@@ -57,13 +58,13 @@
                         </thead>
                         <tbody>
                             @foreach ($ordersInfo as $orderInfo)
-                            <tr wire:key="{{ $orderInfo->id}}">
+                            <tr wire:key="{{ $orderInfo->id }}">
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    <small>{{ $orderInfo->product ? $orderInfo->product->name : "N/A"  }}</small>
+                                    <small>{{ $orderInfo->product ? $orderInfo->product->name : 'N/A' }}</small>
                                 </td>
                                 <td class="text-center">
-                                    <small>{{ $orderInfo->product ? $orderInfo->product->code : "N/A"  }} </small>
+                                    <small>{{ $orderInfo->product ? $orderInfo->product->code : 'N/A' }} </small>
                                 </td>
                                 <td class="text-center">
                                     {{ $orderInfo->quantity }}
@@ -79,23 +80,26 @@
                             <tr>
                                 <td colspan="4"></td>
                                 <td class="text-right"><strong>Sub Total</strong></td>
-                                <td class="text-right"><strong> {{ $order->sub_total }} {{ $order->sub_total ? 'Tk' : '' }}</strong></td>
+                                <td class="text-right"><strong> {{ $order->sub_total }}
+                                        {{ $order->sub_total ? 'Tk' : '' }}</strong></td>
                             </tr>
                             <tr>
                                 <td colspan="4"></td>
                                 <td class="text-right"><strong>Vat %</strong></td>
-                                <td class="text-right"><strong> {{ $order->vat ?? 'N/A'}}</strong></td>
+                                <td class="text-right"><strong> {{ $order->vat ?? 'N/A' }}</strong></td>
                             </tr>
                             <tr>
                                 <td colspan="4"></td>
                                 <td class="text-right"><strong>Shiping charge</strong></td>
-                                <td class="text-right"><strong> {{ $order->shiping_charge ?? 'N/A'}} {{ $order->shiping_charge ? 'Tk' : '' }}</strong></td>
+                                <td class="text-right"><strong> {{ $order->shiping_charge ?? 'N/A' }}
+                                        {{ $order->shiping_charge ? 'Tk' : '' }}</strong></td>
                             </tr>
                             <tr>
                                 <td colspan="4">
                                 </td>
                                 <td class="text-right"><strong>Total</strong></td>
-                                <td class="text-right"><strong>{{ $order->total }} {{ $order->total ? 'Tk' : '' }}</strong></td>
+                                <td class="text-right"><strong>{{ $order->total }}
+                                        {{ $order->total ? 'Tk' : '' }}</strong></td>
                             </tr>
                         </tbody>
                     </table>

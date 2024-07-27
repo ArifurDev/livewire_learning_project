@@ -96,7 +96,7 @@
                                                 Acction
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                <a class="dropdown-item" href="{{ route('order.invoice.pdf', ['orderId' => $order->id]) }}">Export as PDF</a>
+                                                <a class="dropdown-item" href="{{ route('order.invoice.pdf',['orderId'=>$order->id]) }}">Export as PDF</a>
                                                 <a class="dropdown-item" href="">Edit</a>
                                                 <a class="dropdown-item" href="{{ route('order.info.show', ['orderId' => $order->id]) }}">Show</a>
                                                 <button class="dropdown-item" type="button" wire:confirm='Are you sure to delete this Post ?' wire:click="delete({{ $order->id }})">Delete</button>

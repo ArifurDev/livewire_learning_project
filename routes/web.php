@@ -18,7 +18,13 @@ use App\Livewire\Routes;
 use App\Livewire\StoreManagement;
 use App\Livewire\Subscribers;
 use App\Livewire\Variants;
+use App\Models\Order;
+use App\Models\OrderInfo;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -74,12 +80,36 @@ Route::middleware('auth')->group(function () {
     Route::get('/order/management', OrderManagement::class)->name('order.management.index');
     Route::get('/order/information/show/{orderId}', OrderInfoShow::class)->name('order.info.show');
     Route::get('/order/invoice/show/{orderId}', OrderInvoice::class)->name('order.invoice.show');
-    Route::get('/order/invoice/pdf/{orderId}', InvoiceDownload::class)->name('order.invoice.pdf');
+
+    Route::get('/order/invoice/pdf/{orderId}', function ($orderId) {
+            // Retrieve order information and order details
+            $orderInfo = OrderInfo::with('product')->where('order_id', $orderId)->get();
+            $order = Order::findOrFail($orderId);
+
+            // Check if order information is found
+            if ($orderInfo->isNotEmpty()) {
+                $pdf = PDF::loadView('livewire.backend.order.invoice-download', [
+                    'ordersInfo' => $orderInfo,
+                    'order' => $order,
+                    'dateTime' => now()->format('Y-m-d h:i:sa'),
+                    'authName' => auth()->user()->name ?? 'Guest'
+                ])->setPaper('A4');
+
+                return $pdf->download('invoice.pdf');
+            }
+            return redirect()->route('order.management.index');
+
+    })->name('order.invoice.pdf');
+
+
+
 
     //route mangement
     Route::get('/routes/management', Routes::class)->name('routes.setup');
 
     //Subscribers
     Route::get('/subscribers', Subscribers::class)->name('subscribers.index');
+
+
 });
 require __DIR__ . '/auth.php';
