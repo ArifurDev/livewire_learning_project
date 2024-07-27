@@ -79,7 +79,6 @@
 
         .invoice-note {
             font-size: 12px;
-            color: #666;
             margin-top: 20px;
         }
 
@@ -88,7 +87,6 @@
             padding-top: 10px;
             text-align: center;
             font-size: 12px;
-            color: #666;
         }
 
         .invoice-footer span {

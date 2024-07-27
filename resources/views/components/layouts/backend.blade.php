@@ -301,9 +301,9 @@
                                         <i class="las la-minus"></i><span>Route Management</span>
                                     </a>
                                 </li>
-                                <li class="">
-                                    <a href="../backend/page-add-return.html">
-                                        <i class="las la-minus"></i><span>Add Return</span>
+                                <li class="{{ Request::routeIs('site.info') ? 'active' : '' }}">
+                                    <a href="{{ route('site.info') }}">
+                                        <i class="las la-minus"></i><span>Site Component</span>
                                     </a>
                                 </li>
                             </ul>

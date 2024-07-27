@@ -15,6 +15,7 @@ use App\Livewire\ProductCreate;
 use App\Livewire\ProductEdit;
 use App\Livewire\ProductIndex;
 use App\Livewire\Routes;
+use App\Livewire\SiteInfoComponent;
 use App\Livewire\StoreManagement;
 use App\Livewire\Subscribers;
 use App\Livewire\Variants;
@@ -102,13 +103,14 @@ Route::middleware('auth')->group(function () {
     })->name('order.invoice.pdf');
 
 
-
-
     //route mangement
     Route::get('/routes/management', Routes::class)->name('routes.setup');
 
     //Subscribers
     Route::get('/subscribers', Subscribers::class)->name('subscribers.index');
+
+    //Site information
+    Route::get('/site/information', SiteInfoComponent::class)->name('site.info');
 
 
 });
