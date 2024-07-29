@@ -14,14 +14,16 @@ class SiteInfo extends Model
         'email',
         'phone',
         'address',
+        'logo',
+        'favicon',
+
         'facebook',
         'twitter',
         'instagram',
         'linkedin',
         'youtube',
+        
         'google_map',
-        'logo',
-        'favicon',
         'copyright',
         'description',
         'keywords',

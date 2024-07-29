@@ -21,35 +21,35 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->string('favicon')->nullable();
 
-            $table->string('facebook')->nullable();
-            $table->string('twitter')->nullable();
-            $table->string('instagram')->nullable();
-            $table->string('linkedin')->nullable();
-            $table->string('youtube')->nullable();
+            $table->longText('facebook')->nullable();
+            $table->longText('twitter')->nullable();
+            $table->longText('instagram')->nullable();
+            $table->longText('linkedin')->nullable();
+            $table->longText('youtube')->nullable();
 
-            $table->string('google_map')->nullable();
-            $table->string('copyright')->nullable();
-            $table->string('description')->nullable();
-            $table->string('keywords')->nullable();
-            $table->string('title')->nullable();
-            
-            $table->string('meta_title')->nullable();
-            $table->string('meta_description')->nullable();
-            $table->string('meta_keywords')->nullable();
-            $table->string('google_analytics')->nullable();
-            $table->string('google_tag_manager')->nullable();
-            $table->string('google_adsense')->nullable();
-            $table->string('google_ads')->nullable();
+            $table->longText('google_map')->nullable();
+            $table->longText('copyright')->nullable();
+            $table->longText('description')->nullable();
+            $table->longText('keywords')->nullable();
+            $table->longText('title')->nullable();
 
-            $table->string('facebook_pixel')->nullable();
-            $table->string('facebook_ads')->nullable();
-            $table->string('facebook_pixel_id')->nullable();
-            $table->string('facebook_app_id')->nullable();
-            $table->string('facebook_app_secret')->nullable();
-            $table->string('facebook_page_id')->nullable();
-            $table->string('facebook_page_token')->nullable();
-            $table->string('facebook_page_access_token')->nullable();
-            $table->string('facebook_page_secret')->nullable();
+            $table->longText('meta_title')->nullable();
+            $table->longText('meta_description')->nullable();
+            $table->longText('meta_keywords')->nullable();
+            $table->longText('google_analytics')->nullable();
+            $table->longText('google_tag_manager')->nullable();
+            $table->longText('google_adsense')->nullable();
+            $table->longText('google_ads')->nullable();
+
+            $table->longText('facebook_pixel')->nullable();
+            $table->longText('facebook_ads')->nullable();
+            $table->longText('facebook_pixel_id')->nullable();
+            $table->longText('facebook_app_id')->nullable();
+            $table->longText('facebook_app_secret')->nullable();
+            $table->longText('facebook_page_id')->nullable();
+            $table->longText('facebook_page_token')->nullable();
+            $table->longText('facebook_page_access_token')->nullable();
+            $table->longText('facebook_page_secret')->nullable();
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
