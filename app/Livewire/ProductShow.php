@@ -22,7 +22,7 @@ class ProductShow extends Component
 
     public function render()
     {
-        return view('livewire.product-show',[
+        return view('livewire.backend.product.product-show',[
             'product' => Product::findOrfail($this->productEditID)
         ]);
     }

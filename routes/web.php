@@ -14,6 +14,7 @@ use App\Livewire\OrderManagement;
 use App\Livewire\ProductCreate;
 use App\Livewire\ProductEdit;
 use App\Livewire\ProductIndex;
+use App\Livewire\ProductShow;
 use App\Livewire\Routes;
 use App\Livewire\SiteInfoComponent;
 use App\Livewire\StoreManagement;
@@ -72,7 +73,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/productes', ProductIndex::class)->name('product.index');
     Route::get('/product/create', ProductCreate::class)->name('product.create');
     Route::get('/product/edit/{id}/{slug}', ProductEdit::class)->name('product.edit');
-    Route::get('/product/show/{id}/{slug}', ProductEdit::class)->name('product.show');
+    Route::get('/product/show/{id}/{slug}', ProductShow::class)->name('product.show');
 
     //stock management
     Route::get('/stock/management', StoreManagement::class)->name('store.management.index');

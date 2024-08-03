@@ -82,18 +82,12 @@
                             <td>{{ $product->created_at->diffForHumans() }}</td>
                             <td>{{ $product->updated_at->diffForHumans() }}</td>
                             <td>
-                                <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Acction
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item" href="{{ route('product.edit',['id'=>$product->id,'slug'=>$product->slug]) }}">Edit</a>
-                                        <a class="dropdown-item" href="{{ route('product.show',['id'=>$product->id,'slug'=>$product->slug]) }}">Show</a>
-                                        <button class="dropdown-item" type="button"
-                                            wire:confirm='Are you sure to delete this Post ?'
-                                            wire:click="delete({{ $product->id }})">Delete</button>
-                                    </div>
+                                <div class="btn-group btn-group-toggle">
+                                    <a class="button btn button-icon btn-outline-primary" href="{{ route('product.edit',['id'=>$product->id,'slug'=>$product->slug]) }}">Edit</a>
+                                    <a class="button btn button-icon btn-outline-primary" href="{{ route('product.show',['id'=>$product->id,'slug'=>$product->slug]) }}">Show</a>
+                                    <button type="button" class="button btn button-icon btn-outline-primary"
+                                      wire:confirm='Are you sure to delete this Post ?'
+                                      wire:click="delete({{ $product->id }})">Delete</button>
                                 </div>
                             </td>
                         </tr>
