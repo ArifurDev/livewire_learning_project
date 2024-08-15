@@ -96,7 +96,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <livewire:attribute-selector wire:model.live='selectedOptions' />
+                                <livewire:attribute-selector />
                             </div>
                         </div>
                     </div>

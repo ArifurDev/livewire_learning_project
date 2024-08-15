@@ -165,6 +165,7 @@ class ProductCreate extends Component
     }
 
 
+
     //store product data and return store produtc id
     private function storeProductData($slug, $uploadedImages)
     {
